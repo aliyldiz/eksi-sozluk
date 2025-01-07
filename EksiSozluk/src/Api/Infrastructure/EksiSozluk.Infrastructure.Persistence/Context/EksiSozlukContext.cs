@@ -8,6 +8,11 @@ public class EksiSozlukContext : DbContext
 {
     public const string DEFAULT_SCHEMA = "dbo";
 
+    public EksiSozlukContext()
+    {
+        
+    }
+    
     public EksiSozlukContext(DbContextOptions options) : base(options)
     {
     }
@@ -20,6 +25,17 @@ public class EksiSozlukContext : DbContext
     public DbSet<EntryCommentVote> EntryCommentVotes { get; set; }
     public DbSet<EntryCommentFavorite> EntryCommentFavorites { get; set; }
     public DbSet<EmailConfirmation> EmailConfirmations { get; set; }
+    
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            var connStr =
+                "Server=localhost;Database=EksiSozlukDb;User Id=SA;Password=StrongPassword123!;TrustServerCertificate=True;";
+            optionsBuilder.UseSqlServer(connStr, opt =>
+                opt.EnableRetryOnFailure());
+        }
+    }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

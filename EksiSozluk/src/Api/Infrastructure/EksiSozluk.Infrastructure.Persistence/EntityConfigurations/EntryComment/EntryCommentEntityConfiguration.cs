@@ -12,7 +12,8 @@ public class EntryCommentEntityConfiguration : BaseEntityConfiguration<Api.Domai
         builder.ToTable("entrycomment", EksiSozlukContext.DEFAULT_SCHEMA);
         builder.HasOne(ec => ec.CreatedBy)
             .WithMany(e => e.EntryComments)
-            .HasForeignKey(ec => ec.CreatedById);
+            .HasForeignKey(ec => ec.CreatedById)
+            .OnDelete(DeleteBehavior.Restrict);
         builder.HasOne(ec => ec.Entry)
             .WithMany(u => u.EntryComments)
             .HasForeignKey(ec => ec.EntryId);
