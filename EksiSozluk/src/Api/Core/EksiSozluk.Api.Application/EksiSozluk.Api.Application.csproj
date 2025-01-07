@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\EksiSozluk.Api.Domain\EksiSozluk.Api.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
