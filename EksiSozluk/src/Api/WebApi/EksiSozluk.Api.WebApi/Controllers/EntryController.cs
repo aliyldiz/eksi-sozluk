@@ -1,3 +1,5 @@
+using EksiSozluk.Api.Application.Features.Queries.GetEntiries;
+using EksiSozluk.Api.Application.Features.Queries.GetMainPageEntries;
 using EksiSozluk.Common.ViewModels.RequestModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +15,21 @@ public class EntryController : BaseController
     public EntryController(IMediator mediator)
     {
         _mediator = mediator;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetEntries([FromQuery]GetEntriesQuery query)
+    {
+        var entries = await _mediator.Send(query);
+        return Ok(entries);
+    }
+    
+    [HttpGet]
+    [Route("MainPageEntries")]
+    public async Task<IActionResult> GetMainPageEntries(int page, int pageSize)
+    {
+        var entries = await _mediator.Send(new GetMainPageEntriesQuery(UserId, page, pageSize));
+        return Ok(entries);
     }
     
     [HttpPost]
