@@ -1,4 +1,5 @@
 using EksiSozluk.Api.Application.Features.Commands.User.ConfirmEmail;
+using EksiSozluk.Api.Application.Features.Queries.GetUserDetail;
 using EksiSozluk.Common.Events.User;
 using EksiSozluk.Common.ViewModels.RequestModels;
 using MediatR;
@@ -15,6 +16,21 @@ public class UserController : BaseController
     public UserController(IMediator mediator)
     {
         _mediator = mediator;
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Get(Guid id)
+    {
+        var user = await _mediator.Send(new GetUserDetailQuery(id));
+        return Ok(user);
+    }
+    
+    [HttpGet]
+    [Route("UserName/{userName}")]
+    public async Task<IActionResult> GetByUserName(string userName)
+    {
+        var user = await _mediator.Send(new GetUserDetailQuery(Guid.Empty, userName));
+        return Ok(user);
     }
     
    [HttpPost]

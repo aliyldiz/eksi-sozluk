@@ -1,3 +1,4 @@
+using EksiSozluk.Api.Application.Features.Queries.GetEntryComments;
 using EksiSozluk.Api.Application.Interfaces.Repositories;
 using EksiSozluk.Common.Infrastructure.Extensions;
 using EksiSozluk.Common.ViewModels.Page;
@@ -5,24 +6,26 @@ using EksiSozluk.Common.ViewModels.Queries;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace EksiSozluk.Api.Application.Features.Queries.GetMainPageEntries;
+namespace EksiSozluk.Api.Application.Features.Queries.GetEntryDetail;
 
-public class GetMainPageEntriesQueryHandler : IRequestHandler<GetMainPageEntriesQuery, PagedViewModel<GetEntryDetailViewModel>>
+public class GetEntryDetailQueryHandler : IRequestHandler<GetEntryDetailQuery, GetEntryDetailViewModel>
 {
     private readonly IEntryRepository _repository;
 
-    public GetMainPageEntriesQueryHandler(IEntryRepository repository)
+    public GetEntryDetailQueryHandler(IEntryRepository repository)
     {
         _repository = repository;
     }
 
-    public async Task<PagedViewModel<GetEntryDetailViewModel>> Handle(GetMainPageEntriesQuery request, CancellationToken cancellationToken)
+    public async Task<GetEntryDetailViewModel> Handle(GetEntryDetailQuery request, CancellationToken cancellationToken)
     {
+        
         var query = _repository.AsQueryable();
 
         query = query.Include(i => i.EntryFavorites)
             .Include(i => i.CreatedBy)
-            .Include(i => i.EntryVotes);
+            .Include(i => i.EntryVotes)
+            .Where(i => i.Id == request.EntryId);
 
         var list = query.Select(i => new GetEntryDetailViewModel()
         {
@@ -37,9 +40,7 @@ public class GetMainPageEntriesQueryHandler : IRequestHandler<GetMainPageEntries
                 ? i.EntryVotes.FirstOrDefault(j => j.CreatedById == request.UserId)!.VoteType
                 : Common.ViewModels.VoteType.None
         });
-        
-        var entries = await list.GetPaged(request.Page, request.PageSize);
 
-        return entries;
+        return await list.FirstOrDefaultAsync(cancellationToken);
     }
 }
