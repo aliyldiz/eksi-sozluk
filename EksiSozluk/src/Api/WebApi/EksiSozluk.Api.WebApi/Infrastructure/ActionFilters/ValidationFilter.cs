@@ -1,3 +1,5 @@
+using EksiSozluk.Common.Infrastructure.Result;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace EksiSozluk.Api.WebApi.Infrastructure.ActionFilters;
@@ -12,6 +14,9 @@ public class ValidationFilter : IAsyncActionFilter
                 .Select(x => !string.IsNullOrEmpty(x.ErrorMessage) ? x.ErrorMessage : x.Exception?.Message)
                 .Distinct().ToList();
 
+            var result = new ValidationResponseModel(messages);
+            context.Result = new BadRequestObjectResult(result);
+            
             return;
         }
         

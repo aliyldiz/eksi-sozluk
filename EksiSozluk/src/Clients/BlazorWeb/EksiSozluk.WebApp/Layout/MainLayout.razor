@@ -1,4 +1,5 @@
 ﻿@using EksiSozluk.WebApp.Infrastructure.Services
+@using Microsoft.AspNetCore.Components.Authorization
 @inherits LayoutComponentBase
 
 <div class="navbar-fixed-top text-white">
@@ -45,20 +46,20 @@
     <br/>
     <br/>
     
-    @*<AuthorizeView>
+    <AuthorizeView>
         <Authorized>
             <div class="top-nav">
                 <input type="button" class="form-control btn-success btn-sozluk w-auto" value="Create Entry" @onclick="@NavigateCreateEntryPage"/>
                 <input type="button" class="form-control btn-success btn-sozluk w-auto" value="Me" @onclick="@NavigateMEPage"/>
                 <input type="button" class="form-control btn-success btn-sozluk w-auto" value="Logout" @onclick="@NavigateLogoutPage"/>
             </div>
-        </Authorized>*@
-        @*<NotAuthorized>*@
+        </Authorized>
+        <NotAuthorized>
             <div class="top-nav">
                 <input type="button" class="form-control btn-success btn-sozluk w-auto" value="Login" @onclick="@NavigateLoginPage"/>
             </div>
-        @*</NotAuthorized>*@
-    @*</AuthorizeView>*@
+        </NotAuthorized>
+    </AuthorizeView>
     <div class="sub-nav">
         <a class="sub-nav-item active">bugün</a>
         <a class="sub-nav-item">gündem</a>

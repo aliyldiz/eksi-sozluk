@@ -1,9 +1,16 @@
+using System.Drawing;
 using System.Text.Json.Serialization;
+
 
 namespace EksiSozluk.Common.Infrastructure.Result;
 
 public class ValidationResponseModel
 {
+    public ValidationResponseModel()
+    {
+        
+    }
+    
     public ValidationResponseModel(string message) : this(new List<string>() { message })
     {
         
