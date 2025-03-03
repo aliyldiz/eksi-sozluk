@@ -1,4 +1,4 @@
-namespace EksiSozluk.Common.ViewModels;
+namespace EksiSozluk.Common.Models;
 
 public enum VoteType
 {

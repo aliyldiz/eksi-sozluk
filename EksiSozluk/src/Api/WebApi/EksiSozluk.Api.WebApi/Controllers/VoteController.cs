@@ -1,14 +1,16 @@
 using EksiSozluk.Api.Application.Features.Commands.Entry.DeleteVote;
 using EksiSozluk.Api.Application.Features.Commands.EntryComment.DeleteVote;
-using EksiSozluk.Common.ViewModels;
-using EksiSozluk.Common.ViewModels.RequestModels;
+using EksiSozluk.Common.Models;
+using EksiSozluk.Common.Models.RequestModels;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EksiSozluk.Api.WebApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class VoteController : BaseController
 {
     private readonly IMediator _mediator;
@@ -44,7 +46,7 @@ public class VoteController : BaseController
     
     [HttpPost]
     [Route("DeleteEntryCommentVote/{entryId}")]
-    public async Task<IActionResult> DeleteEntryCommetnVote(Guid entryCommentId)
+    public async Task<IActionResult> DeleteEntryCommentVote(Guid entryCommentId)
     {
         await _mediator.Send(new DeleteEntryCommentVoteCommand(entryCommentId, UserId.Value));
         return Ok();

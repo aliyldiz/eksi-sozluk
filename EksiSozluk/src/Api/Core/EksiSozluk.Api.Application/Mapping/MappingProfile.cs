@@ -1,7 +1,7 @@
 using AutoMapper;
 using EksiSozluk.Api.Domain.Models;
-using EksiSozluk.Common.ViewModels.Queries;
-using EksiSozluk.Common.ViewModels.RequestModels;
+using EksiSozluk.Common.Models.Queries;
+using EksiSozluk.Common.Models.RequestModels;
 
 namespace EksiSozluk.Api.Application.Mapping;
 

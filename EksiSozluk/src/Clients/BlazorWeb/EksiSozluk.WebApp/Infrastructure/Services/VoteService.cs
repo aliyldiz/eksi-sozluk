@@ -1,4 +1,4 @@
-using EksiSozluk.Common.ViewModels;
+using EksiSozluk.Common.Models;
 using EksiSozluk.WebApp.Infrastructure.Services.Interfaces;
 
 namespace EksiSozluk.WebApp.Infrastructure.Services;

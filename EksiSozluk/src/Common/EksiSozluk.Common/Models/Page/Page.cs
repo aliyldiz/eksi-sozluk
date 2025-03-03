@@ -1,4 +1,4 @@
-namespace EksiSozluk.Common.ViewModels.Page;
+namespace EksiSozluk.Common.Models.Page;
 
 public class Page
 {
@@ -20,7 +20,7 @@ public class Page
     public Page(int currentPage, int pageSize, int totalRowCount)
     {
         if (currentPage < 1)
-         throw new ArgumentException("Current page must be greater than or equal to 1.", nameof(currentPage));  
+            throw new ArgumentException("Current page must be greater than or equal to 1.", nameof(currentPage));  
         
         if (pageSize < 1)
             throw new ArgumentException("Page size must be greater than or equal to 1.", nameof(pageSize));

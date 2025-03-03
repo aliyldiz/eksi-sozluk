@@ -1,7 +1,7 @@
 using System.Net.Http.Json;
-using EksiSozluk.Common.ViewModels.Page;
-using EksiSozluk.Common.ViewModels.Queries;
-using EksiSozluk.Common.ViewModels.RequestModels;
+using EksiSozluk.Common.Models.Page;
+using EksiSozluk.Common.Models.Queries;
+using EksiSozluk.Common.Models.RequestModels;
 
 namespace EksiSozluk.WebApp.Infrastructure.Services;
 

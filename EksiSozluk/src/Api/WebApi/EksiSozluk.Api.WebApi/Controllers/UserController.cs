@@ -1,8 +1,9 @@
 using EksiSozluk.Api.Application.Features.Commands.User.ConfirmEmail;
 using EksiSozluk.Api.Application.Features.Queries.GetUserDetail;
 using EksiSozluk.Common.Events.User;
-using EksiSozluk.Common.ViewModels.RequestModels;
+using EksiSozluk.Common.Models.RequestModels;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EksiSozluk.Api.WebApi.Controllers;
@@ -42,6 +43,7 @@ public class UserController : BaseController
    }
    
    [HttpPost]
+   [Authorize]
    public async Task<IActionResult> Create([FromBody]CreateUserCommand command)
    {
        var guid = await _mediator.Send(command); 
@@ -50,6 +52,7 @@ public class UserController : BaseController
    
    [HttpPost]
    [Route("Update")]
+   [Authorize]
    public async Task<IActionResult> UpdateUser([FromBody]UpdateUserCommand command)
    {
        var guid = await _mediator.Send(command); 
@@ -66,6 +69,7 @@ public class UserController : BaseController
    
    [HttpPost]
    [Route("ChangePassword")]
+   [Authorize]
    public async Task<IActionResult> ChangePassword([FromBody]ChangeUserPasswordCommand command)
    {
        if (!command.UserId.HasValue)

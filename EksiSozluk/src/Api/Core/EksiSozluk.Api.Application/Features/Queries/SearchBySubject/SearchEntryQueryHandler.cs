@@ -1,5 +1,5 @@
 using EksiSozluk.Api.Application.Interfaces.Repositories;
-using EksiSozluk.Common.ViewModels.Queries;
+using EksiSozluk.Common.Models.Queries;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

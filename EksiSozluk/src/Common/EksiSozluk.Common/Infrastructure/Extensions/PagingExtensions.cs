@@ -1,4 +1,4 @@
-using EksiSozluk.Common.ViewModels.Page;
+using EksiSozluk.Common.Models.Page;
 using Microsoft.EntityFrameworkCore;
 
 namespace EksiSozluk.Common.Infrastructure.Extensions;

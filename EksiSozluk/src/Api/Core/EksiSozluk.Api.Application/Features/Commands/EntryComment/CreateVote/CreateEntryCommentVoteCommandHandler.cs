@@ -1,7 +1,7 @@
 using EksiSozluk.Common;
 using EksiSozluk.Common.Events.EntryComment;
 using EksiSozluk.Common.Infrastructure;
-using EksiSozluk.Common.ViewModels.RequestModels;
+using EksiSozluk.Common.Models.RequestModels;
 using MediatR;
 
 namespace EksiSozluk.Api.Application.Features.Commands.EntryComment.CreateVote;

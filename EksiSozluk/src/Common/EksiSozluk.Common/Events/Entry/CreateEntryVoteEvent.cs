@@ -1,4 +1,4 @@
-using EksiSozluk.Common.ViewModels;
+using EksiSozluk.Common.Models;
 
 namespace EksiSozluk.Common.Events.Entry;
 

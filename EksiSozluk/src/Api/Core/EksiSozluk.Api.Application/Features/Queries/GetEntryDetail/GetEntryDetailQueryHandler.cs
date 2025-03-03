@@ -1,8 +1,5 @@
-using EksiSozluk.Api.Application.Features.Queries.GetEntryComments;
 using EksiSozluk.Api.Application.Interfaces.Repositories;
-using EksiSozluk.Common.Infrastructure.Extensions;
-using EksiSozluk.Common.ViewModels.Page;
-using EksiSozluk.Common.ViewModels.Queries;
+using EksiSozluk.Common.Models.Queries;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,7 +35,7 @@ public class GetEntryDetailQueryHandler : IRequestHandler<GetEntryDetailQuery, G
             CreatedByUserName = i.CreatedBy.UserName,
             VoteType = request.UserId.HasValue && i.EntryVotes.Any(j => j.CreatedById == request.UserId)
                 ? i.EntryVotes.FirstOrDefault(j => j.CreatedById == request.UserId)!.VoteType
-                : Common.ViewModels.VoteType.None
+                : Common.Models.VoteType.None
         });
 
         return await list.FirstOrDefaultAsync(cancellationToken);

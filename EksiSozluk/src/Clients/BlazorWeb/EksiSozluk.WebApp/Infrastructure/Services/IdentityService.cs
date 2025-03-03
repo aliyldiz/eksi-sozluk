@@ -3,11 +3,10 @@ using System.Text.Json;
 using Blazored.LocalStorage;
 using EksiSozluk.Common.Infrastructure.Exceptions;
 using EksiSozluk.Common.Infrastructure.Result;
-using EksiSozluk.Common.ViewModels.Queries;
-using EksiSozluk.Common.ViewModels.RequestModels;
+using EksiSozluk.Common.Models.Queries;
+using EksiSozluk.Common.Models.RequestModels;
 using EksiSozluk.WebApp.Infrastructure.Auth;
 using EksiSozluk.WebApp.Infrastructure.Extensions;
-using EksiSozluk.WebApp.Infrastructure.Services.Interfaces;
 using Microsoft.AspNetCore.Components.Authorization;
 
 namespace EksiSozluk.WebApp.Infrastructure.Services;

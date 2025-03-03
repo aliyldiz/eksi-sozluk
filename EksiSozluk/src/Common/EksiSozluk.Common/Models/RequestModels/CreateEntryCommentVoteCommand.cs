@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace EksiSozluk.Common.ViewModels.RequestModels;
+namespace EksiSozluk.Common.Models.RequestModels;
 
 public class CreateEntryCommentVoteCommand : IRequest<Guid>, IRequest<bool>
 {

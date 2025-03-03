@@ -1,4 +1,4 @@
-using EksiSozluk.Common.ViewModels.RequestModels;
+using EksiSozluk.Common.Models.RequestModels;
 
 namespace EksiSozluk.WebApp.Infrastructure.Services;
 

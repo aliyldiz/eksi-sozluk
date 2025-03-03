@@ -1,4 +1,4 @@
-namespace EksiSozluk.Common.ViewModels.Page;
+namespace EksiSozluk.Common.Models.Page;
 
 public class BasePageQuery
 {

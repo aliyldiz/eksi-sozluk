@@ -1,5 +1,4 @@
 using Blazored.LocalStorage;
-using EksiSozluk.Common.ViewModels;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using EksiSozluk.WebApp;
@@ -15,12 +14,14 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddHttpClient("WebApiClient", client =>
 {
     client.BaseAddress = new Uri("https://localhost:5001");
-});
+}).AddHttpMessageHandler<AuthTokenHandler>();
 
 builder.Services.AddScoped(sp =>
 {
     return sp.GetRequiredService<IHttpClientFactory>().CreateClient("WebApiClient");
 });
+
+builder.Services.AddScoped<AuthTokenHandler>();
 
 builder.Services.AddTransient<IEntryService, EntryService>();
 builder.Services.AddTransient<IFavService, FavService>();

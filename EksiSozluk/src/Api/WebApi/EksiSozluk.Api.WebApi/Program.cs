@@ -1,4 +1,5 @@
 using EksiSozluk.Api.Application.Extensions;
+using EksiSozluk.Api.WebApi.Infrastructure.ActionFilters;
 using EksiSozluk.Api.WebApi.Infrastructure.Extensions;
 using EksiSozluk.Infrastructure.Persistence.Extensions;
 using FluentValidation.AspNetCore;
@@ -10,18 +11,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.ConfigureAuth(builder.Configuration);
-
 builder.Services
-    .AddControllers()
+    .AddControllers(opt => opt.Filters.Add<ValidateModelStateFilter>())
     .AddJsonOptions(opt =>
     {
         opt.JsonSerializerOptions.PropertyNamingPolicy = null;
     })
-    .AddFluentValidation();
+    .AddFluentValidation()
+    .ConfigureApiBehaviorOptions(o => o.SuppressModelStateInvalidFilter = true);
 
 builder.Services.AddApplicationRegistration();
 builder.Services.AddInfrstructureRegistration(builder.Configuration);
+builder.Services.ConfigureAuth(builder.Configuration);
 
 builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 {

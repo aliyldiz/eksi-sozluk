@@ -1,10 +1,6 @@
-using AutoMapper;
-using EksiSozluk.Api.Application.Interfaces.Repositories;
-using EksiSozluk.Common.Infrastructure.Extensions;
-using EksiSozluk.Common.ViewModels.Page;
-using EksiSozluk.Common.ViewModels.Queries;
+using EksiSozluk.Common.Models.Page;
+using EksiSozluk.Common.Models.Queries;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace EksiSozluk.Api.Application.Features.Queries.GetMainPageEntries;
 

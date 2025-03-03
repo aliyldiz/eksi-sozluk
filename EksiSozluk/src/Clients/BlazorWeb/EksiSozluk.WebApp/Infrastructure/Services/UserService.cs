@@ -3,7 +3,7 @@ using System.Text.Json;
 using EksiSozluk.Common.Events.User;
 using EksiSozluk.Common.Infrastructure.Exceptions;
 using EksiSozluk.Common.Infrastructure.Result;
-using EksiSozluk.Common.ViewModels.Queries;
+using EksiSozluk.Common.Models.Queries;
 
 namespace EksiSozluk.WebApp.Infrastructure.Services;
 

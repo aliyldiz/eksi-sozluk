@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace EksiSozluk.Common.ViewModels.RequestModels;
+namespace EksiSozluk.Common.Models.RequestModels;
 
 public class CreateEntryCommand : IRequest<bool>, IRequest<Guid>
 {

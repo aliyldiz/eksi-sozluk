@@ -4,7 +4,7 @@ using EksiSozluk.Common;
 using EksiSozluk.Common.Events.User;
 using EksiSozluk.Common.Infrastructure;
 using EksiSozluk.Common.Infrastructure.Exceptions;
-using EksiSozluk.Common.ViewModels.RequestModels;
+using EksiSozluk.Common.Models.RequestModels;
 using MediatR;
 
 namespace EksiSozluk.Api.Application.Features.Commands.User.Create;
@@ -27,6 +27,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
         if (existsUser is not null)
             throw new DatabaseValidationException("User already exists");
         
+        request.Password = PasswordEncryptor.Encrypt(request.Password);
         var dbUser = _mapper.Map<Domain.Models.User>(request);
         
         var rows = await _userRepository.AddAsync(dbUser);

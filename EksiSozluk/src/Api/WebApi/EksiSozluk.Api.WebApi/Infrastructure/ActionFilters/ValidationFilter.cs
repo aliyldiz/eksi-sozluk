@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace EksiSozluk.Api.WebApi.Infrastructure.ActionFilters;
 
-public class ValidationFilter : IAsyncActionFilter
+public class ValidateModelStateFilter : IAsyncActionFilter
 {
     public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {

@@ -1,4 +1,4 @@
-using EksiSozluk.Common.ViewModels.Queries;
+using EksiSozluk.Common.Models.Queries;
 
 namespace EksiSozluk.WebApp.Infrastructure.Services;
 

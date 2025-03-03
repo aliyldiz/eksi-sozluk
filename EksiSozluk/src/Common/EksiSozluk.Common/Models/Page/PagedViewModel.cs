@@ -1,4 +1,4 @@
-namespace EksiSozluk.Common.ViewModels.Page;
+namespace EksiSozluk.Common.Models.Page;
 
 public class PagedViewModel<T> where T : class
 {
@@ -7,12 +7,12 @@ public class PagedViewModel<T> where T : class
         
     }
     
-    public PagedViewModel(IList<T> result, Page pageInfo)
+    public PagedViewModel(IList<T> results, Page pageInfo)
     {
-        Result = result;
+        Results = results;
         PageInfo = pageInfo;
     }
 
-    public IList<T> Result { get; set; }
+    public IList<T> Results { get; set; }
     public Page PageInfo { get; set; }
 }

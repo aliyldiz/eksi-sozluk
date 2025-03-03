@@ -9,25 +9,25 @@ namespace EksiSozluk.WebApp.Infrastructure.Auth;
 
 public class AuthStateProvider : AuthenticationStateProvider
 {
-    private readonly ILocalStorageService _localStorage;
-    private readonly AuthenticationState _anonymous;
+    private readonly ILocalStorageService localStorage;
+    private readonly AuthenticationState anonymous;
 
     public AuthStateProvider(ILocalStorageService localStorage)
     {
-        _localStorage = localStorage;
-        _anonymous = new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity())); ;
+        this.localStorage = localStorage;
+        anonymous = new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
     }
-    
+
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
-        var apiToken = await _localStorage.GetToken();
+        var apiToken = await localStorage.GetToken();
 
         if (string.IsNullOrEmpty(apiToken))
-            return _anonymous;
+            return anonymous;
 
         var tokenHandler = new JwtSecurityTokenHandler();
         var securityToken = tokenHandler.ReadJwtToken(apiToken);
-        
+
         var cp = new ClaimsPrincipal(new ClaimsIdentity(securityToken.Claims, "jwtAuthType"));
 
         return new AuthenticationState(cp);
@@ -38,17 +38,18 @@ public class AuthStateProvider : AuthenticationStateProvider
         var cp = new ClaimsPrincipal(new ClaimsIdentity(new[]
         {
             new Claim(ClaimTypes.Name, userName),
-            new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
+            new Claim(ClaimTypes.NameIdentifier, userId.ToString())
         }, "jwtAuthType"));
-        
+
         var authState = Task.FromResult(new AuthenticationState(cp));
-        
+
         NotifyAuthenticationStateChanged(authState);
     }
 
     public void NotifyUserLogout()
     {
-        var authState = Task.FromResult(_anonymous);
+        var authState = Task.FromResult(anonymous);
+
         NotifyAuthenticationStateChanged(authState);
     }
 }

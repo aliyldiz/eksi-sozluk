@@ -18,6 +18,6 @@ public class CreateEntryCommentFavCommandHandler : IRequestHandler<CreateEntryCo
                CreatedBy = request.UserId
            });
 
-       return await Task.FromResult(true); // kod blogunda await işlemi yapılmadıgından .FromResult kullanıldı.
+       return await Task.FromResult(true);
     }
 }

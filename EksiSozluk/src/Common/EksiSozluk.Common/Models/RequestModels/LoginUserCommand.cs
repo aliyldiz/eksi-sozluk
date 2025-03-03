@@ -1,7 +1,7 @@
-using EksiSozluk.Common.ViewModels.Queries;
+using EksiSozluk.Common.Models.Queries;
 using MediatR;
 
-namespace EksiSozluk.Common.ViewModels.RequestModels;
+namespace EksiSozluk.Common.Models.RequestModels;
 
 public class LoginUserCommand : IRequest<LoginUserViewModel>
 {

@@ -1,6 +1,6 @@
 using AutoMapper;
 using EksiSozluk.Api.Application.Interfaces.Repositories;
-using EksiSozluk.Common.ViewModels.RequestModels;
+using EksiSozluk.Common.Models.RequestModels;
 using MediatR;
 
 namespace EksiSozluk.Api.Application.Features.Commands.EntryComment.Create;

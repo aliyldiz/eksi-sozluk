@@ -1,6 +1,6 @@
 using AutoMapper;
 using EksiSozluk.Api.Application.Interfaces.Repositories;
-using EksiSozluk.Common.ViewModels.Queries;
+using EksiSozluk.Common.Models.Queries;
 using MediatR;
 
 namespace EksiSozluk.Api.Application.Features.Queries.GetUserDetail;

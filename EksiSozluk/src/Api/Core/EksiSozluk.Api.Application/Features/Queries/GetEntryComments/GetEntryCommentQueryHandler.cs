@@ -1,7 +1,7 @@
 using EksiSozluk.Api.Application.Interfaces.Repositories;
 using EksiSozluk.Common.Infrastructure.Extensions;
-using EksiSozluk.Common.ViewModels.Page;
-using EksiSozluk.Common.ViewModels.Queries;
+using EksiSozluk.Common.Models.Page;
+using EksiSozluk.Common.Models.Queries;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -36,7 +36,7 @@ public class GetEntryCommentQueryHandler : IRequestHandler<GetEntryCommentsQuery
             CreatedByUserName = i.CreatedBy.UserName,
             VoteType = request.UserId.HasValue && i.EntryCommentVotes.Any(j => j.CreatedById == request.UserId)
                 ? i.EntryCommentVotes.FirstOrDefault(j => j.CreatedById == request.UserId)!.VoteType
-                : Common.ViewModels.VoteType.None
+                : Common.Models.VoteType.None
         });
         
         var entries = await list.GetPaged(request.Page, request.PageSize);

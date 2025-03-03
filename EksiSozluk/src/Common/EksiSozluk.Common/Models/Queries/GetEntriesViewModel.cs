@@ -1,4 +1,4 @@
-namespace EksiSozluk.Common.ViewModels.Queries;
+namespace EksiSozluk.Common.Models.Queries;
 
 public class GetEntriesViewModel
 {
