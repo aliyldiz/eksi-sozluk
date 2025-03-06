@@ -1,12 +1,15 @@
+using AutoMapper;
 using EksiSozluk.Api.Application.Features.Queries.GetEntiries;
 using EksiSozluk.Api.Application.Features.Queries.GetEntryComments;
 using EksiSozluk.Api.Application.Features.Queries.GetEntryDetail;
 using EksiSozluk.Api.Application.Features.Queries.GetMainPageEntries;
 using EksiSozluk.Api.Application.Features.Queries.GetUserEntries;
+using EksiSozluk.Api.Application.Interfaces.Repositories;
 using EksiSozluk.Common.Models.Queries;
 using EksiSozluk.Common.Models.RequestModels;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EksiSozluk.Api.WebApi.Controllers;
@@ -16,10 +19,14 @@ namespace EksiSozluk.Api.WebApi.Controllers;
 public class EntryController : BaseController
 {
     private readonly IMediator _mediator;
+    private readonly IEntryRepository _entryRepository;
+    private readonly IMapper _mapper;
     
-    public EntryController(IMediator mediator)
+    public EntryController(IMediator mediator, IEntryRepository entryRepository, IMapper mapper)
     {
         _mediator = mediator;
+        _entryRepository = entryRepository;
+        _mapper = mapper;
     }
 
     [HttpGet]
@@ -72,8 +79,14 @@ public class EntryController : BaseController
         if (!command.CreatedById.HasValue)
             command.CreatedById = UserId;
         
-        var result = await _mediator.Send(command);
-        return Ok(result);
+        // var result = await _mediator.Send(command);
+        // return Ok(result);
+        
+        var dbEntry = _mapper.Map<Domain.Models.Entry>(command);
+        
+        await _entryRepository.AddAsync(dbEntry);
+
+        return Ok(dbEntry.Id);
     }
     
     [HttpPost]

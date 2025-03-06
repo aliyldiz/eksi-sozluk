@@ -8,8 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 builder.Services
     .AddControllers(opt => opt.Filters.Add<ValidateModelStateFilter>())
@@ -19,6 +17,9 @@ builder.Services
     })
     .AddFluentValidation()
     .ConfigureApiBehaviorOptions(o => o.SuppressModelStateInvalidFilter = true);
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplicationRegistration();
 builder.Services.AddInfrstructureRegistration(builder.Configuration);

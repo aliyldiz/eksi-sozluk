@@ -1,13 +1,10 @@
 <div class="container">
     <span>
         <a class="p-1" title="Up vote!">
-            <span class="oi oi-arrow-top entry-vote @(Vote == VoteType.UpVote ? "text-success":"text-secondary")"
-                  @onclick="(() => UpClicked())"> </span>
+            <i class="fas fa-arrow-up @(Vote == VoteType.UpVote ? "text-success" : "text-secondary")" @onclick="UpClicked"></i>
         </a>
-
         <a class="p-3" title="Down vote!">
-            <span class="oi oi-arrow-bottom entry-vote @(Vote == VoteType.DownVote ? "text-danger":"text-secondary")"
-                  @onclick="(() => DownClicked())"> </span>
+            <i class="fas fa-arrow-down @(Vote == VoteType.DownVote ? "text-danger" : "text-secondary")" @onclick="DownClicked"></i>
         </a>
 
         <EntryFooterFavoriteComponent EntryId="@EntryId"
