@@ -1,6 +1,7 @@
 using System.Data.SqlClient;
 using Dapper;
 using EksiSozluk.Common.Events.Entry;
+using EksiSozluk.Common.Events.EntryComment;
 
 namespace EksiSozluk.Projections.VoteService.Services;
 
@@ -37,6 +38,34 @@ public class VoteService
             new
             {
                 EntryId = entryId,
+                UserId = userId
+            });
+    }
+    
+    public async Task CreateEntryCommentVote(CreateEntryCommentVoteEvent vote)
+    {
+        await DeleteEntryCommentVote(vote.EntryCommentId, vote.CreatedBy);
+
+        using var connection = new SqlConnection(connectionString);
+
+        await connection.ExecuteAsync("INSERT INTO ENTRYCOMMENTVOTE (Id, CreateDate, EntryCommentId, VoteType, CREATEDBYID) VALUES (@Id, GETDATE(), @EntryCommentId, @VoteType, @CreatedById)",
+            new
+            {
+                Id = Guid.NewGuid(),
+                EntryCommentId = vote.EntryCommentId,
+                VoteType = Convert.ToInt16(vote.VoteType),
+                CreatedById = vote.CreatedBy
+            });
+    }
+
+    public async Task DeleteEntryCommentVote(Guid entryCommentId, Guid userId)
+    {
+        using var connection = new SqlConnection(connectionString);
+
+        await connection.ExecuteAsync("DELETE FROM EntryCommentVote WHERE EntryCommentId = @EntryCommentId AND CREATEDBYID = @UserId",
+            new
+            {
+                EntryCommentId = entryCommentId,
                 UserId = userId
             });
     }
