@@ -8,6 +8,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Dapper" Version="2.1.66" />
+        <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.6" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Common\EksiSozluk.Common\EksiSozluk.Common.csproj" />
     </ItemGroup>
 </Project>

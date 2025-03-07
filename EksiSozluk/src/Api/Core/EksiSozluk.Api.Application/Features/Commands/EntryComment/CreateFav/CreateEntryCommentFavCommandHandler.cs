@@ -9,7 +9,7 @@ public class CreateEntryCommentFavCommandHandler : IRequestHandler<CreateEntryCo
 {
     public async Task<bool> Handle(CreateEntryCommentFavCommand request, CancellationToken cancellationToken)
     {
-       QueueFactory.SendMessageToExchange(exchangeName: SozlukConstants.FaxExchangeName,
+       QueueFactory.SendMessageToExchange(exchangeName: SozlukConstants.FavExchangeName,
            exchangeType: SozlukConstants.DefaultExchangeType,
            queueName: SozlukConstants.CreateEntryCommentFavQueueName,
            obj: new CreateEntryCommentFavEvent() 

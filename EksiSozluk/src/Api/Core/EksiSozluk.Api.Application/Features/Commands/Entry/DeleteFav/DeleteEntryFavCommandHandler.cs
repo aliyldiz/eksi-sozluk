@@ -9,7 +9,7 @@ public class DeleteEntryFavCommandHandler : IRequestHandler<DeleteEntryFavComman
 {
     public async Task<bool> Handle(DeleteEntryFavCommand request, CancellationToken cancellationToken)
     {
-        QueueFactory.SendMessageToExchange(exchangeName: SozlukConstants.FaxExchangeName,
+        QueueFactory.SendMessageToExchange(exchangeName: SozlukConstants.FavExchangeName,
             exchangeType: SozlukConstants.DefaultExchangeType,
             queueName: SozlukConstants.DeleteEntryFavQueueName,
             obj: new DeleteEntryFavEvent()
