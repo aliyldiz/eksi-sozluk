@@ -174,7 +174,7 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
         if (noTracking)
             query = query.AsNoTracking();
         
-        return await query.SingleOrDefaultAsync();
+        return await query.SingleOrDefaultAsync() ?? throw new InvalidOperationException();
     }
 
     public virtual Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, bool noTracking = true, params Expression<Func<TEntity, object>>[] includes)

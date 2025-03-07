@@ -54,7 +54,7 @@ public class EntryController : BaseController
     [HttpGet]
     [Route("UserEntries")]
     [Authorize]
-    public async Task<IActionResult> GetUserEntries(string userName, Guid userId, int page, int pageSize)
+    public async Task<IActionResult> GetUserEntries(string? userName, Guid userId, int page, int pageSize)
     {
         if (userId == Guid.Empty && string.IsNullOrEmpty(userName))
             userId = UserId.Value;
