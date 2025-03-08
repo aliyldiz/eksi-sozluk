@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>dotnet-EksiSozluk.Projections.FavoriteService-30d06cfa-f090-4621-8455-a7c45e9facbe</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,5 +16,11 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Common\EksiSozluk.Common\EksiSozluk.Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 </Project>

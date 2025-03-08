@@ -1,0 +1,56 @@
+services:
+  eksisozluk.webapp:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80:80"
+    volumes:
+      - ~/.aspnet/https:/root/.aspnet/https:ro
+    networks:
+      - eksi_frontend
+
+  eksisozluk.api.webapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+    ports:
+      - "8080:8080"
+    volumes:
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+      - ~/.aspnet/https:/root/.aspnet/https:ro
+    networks:
+      - eksi_backend
+      - eksi_frontend
+
+  eksisozluk.projections.voteservice:
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+    volumes:
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+    networks:
+      - eksi_backend
+
+  eksisozluk.projections.userservice:
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+    volumes:
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+    networks:
+      - eksi_backend
+
+  eksisozluk.projections.favoriteservice:
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+    volumes:
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+    networks:
+      - eksi_backend
+
+networks:
+  eksi_backend:
+    driver: bridge
+    external: true
+  eksi_frontend:
+    driver: bridge
+    external: true

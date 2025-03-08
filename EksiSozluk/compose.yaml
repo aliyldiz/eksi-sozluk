@@ -1,0 +1,38 @@
+﻿services:
+  eksisozluk.api.webapi:
+    container_name: eksisozluk_api
+    image: eksisozluk.api.webapi
+    build:
+      context: .
+      dockerfile: src/Api/WebApi/EksiSozluk.Api.WebApi/Dockerfile
+
+  eksisozluk.webapp:
+    container_name: eksisozluk_webapp
+    image: eksisozluk.webapp
+    build:
+      context: .
+      dockerfile: src/Clients/BlazorWeb/EksiSozluk.WebApp/Dockerfile
+      
+      
+      
+      
+  eksisozluk.projections.voteservice:
+    container_name: eksisozluk_voteservice
+    image: eksisozluk.projections.voteservice
+    build:
+      context: .
+      dockerfile: src/Projections/EksiSozluk.Projections.VoteService/Dockerfile
+
+  eksisozluk.projections.userservice:
+    container_name: eksisozluk_userservice
+    image: eksisozluk.projections.userservice
+    build:
+      context: .
+      dockerfile: src/Projections/EksiSozluk.Projections.UserService/Dockerfile
+
+  eksisozluk.projections.favoriteservice:
+    container_name: eksisozluk_favoriteservice
+    image: eksisozluk.projections.favoriteservice
+    build:
+      context: .
+      dockerfile: src/Projections/EksiSozluk.Projections.FavoriteService/Dockerfile

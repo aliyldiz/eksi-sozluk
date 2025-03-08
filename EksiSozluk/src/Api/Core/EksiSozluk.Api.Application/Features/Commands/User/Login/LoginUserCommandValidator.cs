@@ -15,7 +15,7 @@ public class LoginUserCommandValidator : AbstractValidator<LoginUserCommand>
         
         RuleFor(i => i.Password)
             .NotNull()
-            .MinimumLength(6)
+            .MinimumLength(5)
             .WithMessage("Password must be at least {MinLenght} characters long");
     }
 }

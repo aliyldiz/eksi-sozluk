@@ -2,7 +2,12 @@ namespace EksiSozluk.Common;
 
 public class SozlukConstants
 {
+#if DEBUG
     public const string RabbitMqHost = "localhost";
+#else
+public const string RabbitMqHost = "some-rabbit";
+#endif
+    
     public const string DefaultExchangeType = "direct";
     
     public const string UserExchangeName = "userExchange";
